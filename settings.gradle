@@ -1,0 +1,6 @@
+rootProject.name = 'personapp-spring-boot'
+include 'domain'
+include 'maria'
+include 'mongo'
+include 'rest'
+include 'graph'

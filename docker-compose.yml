@@ -1,0 +1,10 @@
+services:
+  lab3-maria-db:
+    image: mariadb:latest
+    ports:
+      - "3307:3306"
+    environment:
+      - MARIADB_USER=personapp
+      - MARIADB_PASSWORD=persona123
+      - MARIADB_ROOT_PASSWORD=arquitectura202230
+      - MARIADB_DATABASE=persona_db
