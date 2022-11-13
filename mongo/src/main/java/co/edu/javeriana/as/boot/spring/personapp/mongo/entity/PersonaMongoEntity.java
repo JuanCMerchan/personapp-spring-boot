@@ -17,8 +17,6 @@ public class PersonaMongoEntity {
     private String apellido;
     private String genero;
     private Integer edad;
-    @DBRef
     private List<TelefonoMongoEntity> telefonos;
-    @DBRef
     private List<EstudiosMongoEntity> estudios;
 }

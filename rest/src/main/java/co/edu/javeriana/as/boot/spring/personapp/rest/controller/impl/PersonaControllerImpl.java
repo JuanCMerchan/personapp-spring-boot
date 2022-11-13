@@ -32,7 +32,7 @@ public class PersonaControllerImpl implements PersonaController {
     private int bandera;
     
     @Autowired
-    private PersonaUseCase personaAppAdapter;
+    private PersonaUseCase personaUseCase;
 
     @Autowired
     private PersonaRestMapper personaRestMapper;
@@ -42,7 +42,7 @@ public class PersonaControllerImpl implements PersonaController {
     @Override
     @GetMapping
     public List<PersonaResponse> buscar() {
-       List<Persona> personas = personaAppAdapter.findAll(0);
+       List<Persona> personas = personaUseCase.findAll(0);
         return personaRestMapper.fromListPersonaToListPersonaResponse(personas);
     }
 
@@ -50,29 +50,29 @@ public class PersonaControllerImpl implements PersonaController {
     @PutMapping("/{cc}")
     public Boolean actualizar(@PathVariable("cc") Integer cc, @RequestBody PersonaRequest personaPostRequest) {
         Persona persona = personaRestMapper.fromPersonaRequestToPersona(personaPostRequest);
-        Boolean salida = personaAppAdapter.editar(persona.getCc(), persona, bandera);
+        Boolean salida = personaUseCase.editar(persona.getCc(), persona, bandera);
         return salida;
     }
 
     @Override
     @PostMapping
-    public Boolean agregar(@RequestBody PersonaRequest personaPostRequest) {
-        Persona persona = personaRestMapper.fromPersonaRequestToPersona(personaPostRequest);
-        Boolean salida = personaAppAdapter.agregar(persona, bandera);
+    public Boolean agregar(@RequestBody PersonaRequest personaRequest) {
+        Persona persona = personaRestMapper.fromPersonaRequestToPersona(personaRequest);
+        Boolean salida = personaUseCase.agregar(persona, bandera);
         return salida;
     }
 
     @Override
     @DeleteMapping("/{cc}")
     public Boolean eliminar(@PathVariable("cc") Integer cc) {
-        Boolean salida = personaAppAdapter.eliminar(cc, bandera);
+        Boolean salida = personaUseCase.eliminar(cc, bandera);
         return salida;
     }
 
     @Override
     @GetMapping("/{cc}")
     public PersonaResponse consultar(@PathVariable("cc") Integer Cc) {
-        Persona persona = personaAppAdapter.consultar(Cc, bandera);
+        Persona persona = personaUseCase.consultar(Cc, bandera);
         PersonaResponse personaResponse = personaRestMapper.fromPersonaToPersonaResponse(persona);
         return personaResponse;
     }
