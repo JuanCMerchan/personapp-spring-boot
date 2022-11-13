@@ -8,3 +8,11 @@ services:
       - MARIADB_PASSWORD=persona123
       - MARIADB_ROOT_PASSWORD=arquitectura202230
       - MARIADB_DATABASE=persona_db
+
+  lab3-mongo-db:
+    image: mongo:latest
+    ports: 
+     - "27018:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=personapp
+      - MONGO_INITDB_ROOT_PASSWORD=persona123

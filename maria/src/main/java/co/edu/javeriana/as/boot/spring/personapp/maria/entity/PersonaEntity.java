@@ -12,9 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.springframework.lang.NonNull;
-
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import lombok.Data;

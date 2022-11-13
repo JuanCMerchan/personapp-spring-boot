@@ -6,8 +6,6 @@ package co.edu.javeriana.as.boot.spring.personapp.rest.request;
 
 import java.util.List;
 
-import co.edu.javeriana.as.boot.spring.personapp.rest.response.EstudiosResponse;
-import co.edu.javeriana.as.boot.spring.personapp.rest.response.TelefonoResponse;
 import lombok.Data;
 
 
@@ -19,7 +17,7 @@ public class PersonaRequest {
     private String apellido;
     private String genero;
     private Integer edad;
-    private List<TelefonoResponse> telefono;
-    private List<EstudiosResponse> estudios;
+    private List<TelefonoRequest> telefonos;
+    private List<EstudiosRequest> estudios;
     
 }

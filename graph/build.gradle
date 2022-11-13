@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.7'
+	id 'org.springframework.boot' version '2.7.5'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'java'
 }
@@ -13,10 +13,12 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-graphql'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    //graphql
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     implementation project(':domain')
-    //implementacion db
+    implementation project(':maria')
+    implementation project(':mongo')
 }

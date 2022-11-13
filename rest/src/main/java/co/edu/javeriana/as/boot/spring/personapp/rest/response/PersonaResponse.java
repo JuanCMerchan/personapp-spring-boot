@@ -17,7 +17,7 @@ public class PersonaResponse {
     private String apellido;
     private String genero;
     private Integer edad;
-    private List<TelefonoResponse> telefono;
+    private List<TelefonoResponse> telefonos;
     private List<EstudiosResponse> estudios;
     
 }

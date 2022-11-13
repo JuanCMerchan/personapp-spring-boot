@@ -28,7 +28,7 @@ public class PersonaPersistenceAdapter implements PersonaPortOutMaria{
 
     @Override
     public Persona consultar(Integer cc) {
-        Optional<PersonaEntity> personaEntityOptional = personaRepository.findByCc(cc);
+        Optional<PersonaEntity> personaEntityOptional = personaRepository.findById(cc);
         if(personaEntityOptional.isPresent()) {
             return personaMapper.toPersonaFromPersonaEntity(personaEntityOptional.get());
         }
@@ -37,7 +37,7 @@ public class PersonaPersistenceAdapter implements PersonaPortOutMaria{
 
     @Override
     public boolean agregar(Persona persona) {
-        if(personaRepository.findByCc(persona.getCc()).isPresent()) {
+        if(personaRepository.findById(persona.getCc()).isPresent()) {
             return false;
         }
         if (persona.getEstudios() == null) {
@@ -54,7 +54,7 @@ public class PersonaPersistenceAdapter implements PersonaPortOutMaria{
 
     @Override
     public boolean editar(Integer cc, Persona persona) {
-        if(!personaRepository.findByCc(cc).isPresent()) {
+        if(!personaRepository.findById(cc).isPresent()) {
             return false;
         }
         if(persona.getCc() != cc) {
@@ -66,7 +66,7 @@ public class PersonaPersistenceAdapter implements PersonaPortOutMaria{
 
     @Override
     public boolean eliminar(Integer cc) {
-        Optional<PersonaEntity> personaEntityOptional = personaRepository.findByCc(cc);
+        Optional<PersonaEntity> personaEntityOptional = personaRepository.findById(cc);
         if(personaEntityOptional.isPresent()) {
             personaRepository.delete(personaEntityOptional.get());
             return true;

@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.javeriana.as.boot.spring.personapp.domain.model.Persona;
 import co.edu.javeriana.as.boot.spring.personapp.domain.port.in.PersonaUseCase;
-import co.edu.javeriana.as.boot.spring.personapp.rest.adapter.PersonaAppAdapter;
 import co.edu.javeriana.as.boot.spring.personapp.rest.controller.PersonaController;
 import co.edu.javeriana.as.boot.spring.personapp.rest.mapper.PersonaRestMapper;
 import co.edu.javeriana.as.boot.spring.personapp.rest.request.PersonaRequest;
@@ -50,16 +49,16 @@ public class PersonaControllerImpl implements PersonaController {
     @Override
     @PutMapping("/{cc}")
     public Boolean actualizar(@PathVariable("cc") Integer cc, @RequestBody PersonaRequest personaPostRequest) {
-        Persona p = personaRestMapper.fromPersonaPostRequestToPersona(personaPostRequest);
-        Boolean salida = personaAppAdapter.editar(p.getCc(), p, bandera);
+        Persona persona = personaRestMapper.fromPersonaRequestToPersona(personaPostRequest);
+        Boolean salida = personaAppAdapter.editar(persona.getCc(), persona, bandera);
         return salida;
     }
 
     @Override
     @PostMapping
     public Boolean agregar(@RequestBody PersonaRequest personaPostRequest) {
-        Persona p = personaRestMapper.fromPersonaPostRequestToPersona(personaPostRequest);
-        Boolean salida = personaAppAdapter.agregar(p, bandera);
+        Persona persona = personaRestMapper.fromPersonaRequestToPersona(personaPostRequest);
+        Boolean salida = personaAppAdapter.agregar(persona, bandera);
         return salida;
     }
 
@@ -73,9 +72,9 @@ public class PersonaControllerImpl implements PersonaController {
     @Override
     @GetMapping("/{cc}")
     public PersonaResponse consultar(@PathVariable("cc") Integer Cc) {
-        Persona pe = personaAppAdapter.consultar(Cc, bandera);
-        PersonaResponse po = personaRestMapper.fromPersonaToPersonaPostResponse(pe);
-        return po;
+        Persona persona = personaAppAdapter.consultar(Cc, bandera);
+        PersonaResponse personaResponse = personaRestMapper.fromPersonaToPersonaResponse(persona);
+        return personaResponse;
     }
     
 }

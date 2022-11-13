@@ -31,8 +31,10 @@ public class ProfesionPersistenceAdapter implements ProfesionPortOutMaria {
 
     @Override
     public boolean agregar(Profesion profesion) {
-        if(profesionRepository.findById(profesion.getId()).isPresent()) {
-            return false;
+        if (profesion.getId() != null) {
+            if(profesionRepository.findById(profesion.getId()).isPresent()) {
+                return false;
+            }
         }
         ProfesionEntity profesionEntity = profesionMapper.toProfesionEntityFromProfesion(profesion);
         profesionRepository.save(profesionEntity);

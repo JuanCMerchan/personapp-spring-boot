@@ -1,0 +1,69 @@
+type Query {
+    personaCc(cc: Int): Persona
+    personas: [Persona]!
+    profesionId(id: Int): Profesion
+    profesiones: [Profesion]!
+}
+
+type Mutation {
+    agregarPersona(persona: PersonaInput): Boolean
+    actualizarPersona(cc: Int, persona: PersonaInput): Boolean
+    borrarPersona(cc: Int): Boolean
+    agregarProfesion(profesion: ProfesionInput): Boolean
+    actualizarProfesion(id: Int, profesion: ProfesionInput): Boolean
+    borrarProfesion(id: Int): Boolean
+}
+
+type Profesion {
+    id: ID
+    nom: String!
+    des: String!
+}
+
+type Telefono {
+    num: String!
+    oper: String!
+}
+
+type Estudios {
+    fecha: String!
+    univer: String!
+    profesion: Profesion!
+}
+
+type Persona {
+    cc: ID!
+    nombre: String!
+    apellido: String!
+    genero: String!
+    edad: Int!
+    telefonos: [Telefono]
+    estudios: [Estudios]
+}
+
+input PersonaInput {
+    cc: ID!
+    nombre: String!
+    apellido: String!
+    genero: String!
+    edad: Int!
+    telefonos: [TelefonoInput]
+    estudios: [EstudiosInput]
+}
+
+input TelefonoInput {
+    num: String!
+    oper: String!
+}
+
+input EstudiosInput {
+    fecha: String!
+    univer: String!
+    profesion: ProfesionInput!
+}
+
+input ProfesionInput {
+    id: ID
+    nom: String
+    des: String
+}

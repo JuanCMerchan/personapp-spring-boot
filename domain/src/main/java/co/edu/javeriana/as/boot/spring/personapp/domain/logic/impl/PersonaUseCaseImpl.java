@@ -18,7 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonaUseCaseImpl implements PersonaUseCase {
 
-    //private PersonaPortOutMongo personaPortOutMongo = null;
+    @Autowired
+    private PersonaPortOutMongo personaPortOutMongo;
 
     @Autowired
     private PersonaPortOutMaria personaPortOutMaria;
@@ -27,16 +28,15 @@ public class PersonaUseCaseImpl implements PersonaUseCase {
     public Persona consultar(Integer cc, Integer bandera) {
         switch (bandera) {
             case 0:
-                //return personaPortOutMongo.consultar(cc);
-                break;
+                return personaPortOutMongo.consultar(cc);
             case 1:
                 return personaPortOutMaria.consultar(cc);
             default:
-                //Persona mongo = personaPortOutMongo.consultar(cc);
-                //Persona maria = personaPortOutMaria.consultar(cc);
-                //if(mongo.getCc() ==  maria.getCc()){
-                    //return mongo;
-                //}
+                Persona mongo = personaPortOutMongo.consultar(cc);
+                Persona maria = personaPortOutMaria.consultar(cc);
+                if(mongo.getCc() ==  maria.getCc()){
+                    return mongo;
+                }
             break;
         }
         return null;
@@ -44,24 +44,20 @@ public class PersonaUseCaseImpl implements PersonaUseCase {
 
     @Override
     public boolean agregar(Persona persona, Integer bandera) {
-        //0->mongo
-        //1->maria
         switch (bandera) {
             case 0:
-                //return personaPortOutMongo.agregar(persona);
+                return personaPortOutMongo.agregar(persona);
             case 1:
                 return personaPortOutMaria.agregar(persona);
         
             default:
-            /*
                 Boolean mongo = personaPortOutMongo.agregar(persona);
                 Boolean maria = personaPortOutMaria.agregar(persona);
                 if(mongo ==  maria && mongo){
                     return mongo;
                 }else{
-                    //aqui faltan cosas
+
                 }
-                */
             break;
         }
         return false;
@@ -71,18 +67,16 @@ public class PersonaUseCaseImpl implements PersonaUseCase {
     public boolean editar(Integer cc, Persona persona, Integer bandera) {
         switch (bandera) {
             case 0:
-                //return personaPortOutMongo.editar(cc,persona);
+                return personaPortOutMongo.editar(cc,persona);
             case 1:
                 return personaPortOutMaria.editar(cc,persona);
         
             default:
-            /*
                 Boolean mongo = personaPortOutMongo.editar(cc,persona);
                 Boolean maria = personaPortOutMaria.editar(cc,persona);
                 if(maria && mongo){
                     return mongo;
                 }
-                */
             break;
         }
         return false;
@@ -92,20 +86,18 @@ public class PersonaUseCaseImpl implements PersonaUseCase {
     public boolean eliminar(Integer cc, Integer bandera) {
         switch (bandera) {
             case 0:
-                //return personaPortOutMongo.eliminar(cc);
+                return personaPortOutMongo.eliminar(cc);
             case 1:
                 return personaPortOutMaria.eliminar(cc);
         
             default:
-            /*
                 Boolean mongo = personaPortOutMongo.eliminar(cc);
                 Boolean maria = personaPortOutMaria.eliminar(cc);
                 if(mongo ==  maria && mongo){
                     return mongo;
                 }else{
-                    //aqui faltan cosas
+                    
                 }
-                */
             break;
         }
         return false;
@@ -115,18 +107,16 @@ public class PersonaUseCaseImpl implements PersonaUseCase {
     public Integer count(Integer bandera) {
         switch (bandera) {
             case 0:
-                //return personaPortOutMongo.count();
+                return personaPortOutMongo.count();
             case 1:
                 return personaPortOutMaria.count();
         
             default:
-            /*
                 Integer mongo = personaPortOutMongo.count();
                 Integer maria = personaPortOutMaria.count();
                 if(mongo ==  maria){
                     return mongo;
                 }
-                */
             break;
         }
         return 0;
@@ -134,10 +124,9 @@ public class PersonaUseCaseImpl implements PersonaUseCase {
 
     @Override
     public List<Persona> findAll(Integer bandera) {
-        boolean prueba = false;
         switch (bandera) {
             case 0:
-                //return personaPortOutMongo.findAll();
+                return personaPortOutMongo.findAll();
             case 1:
                 return personaPortOutMaria.findAll();
         

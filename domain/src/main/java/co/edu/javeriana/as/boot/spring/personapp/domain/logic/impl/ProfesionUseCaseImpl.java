@@ -13,8 +13,8 @@ import co.edu.javeriana.as.boot.spring.personapp.domain.port.out.mongo.Profesion
 @Service
 public class ProfesionUseCaseImpl implements ProfesionUseCase {
 
-    //@Autowired
-    //private ProfesionPortOutMongo profesionPortOutMongo;
+    @Autowired
+    private ProfesionPortOutMongo profesionPortOutMongo;
 
     @Autowired
     private ProfesionPortOutMaria profesionPortOutMaria;
@@ -23,7 +23,7 @@ public class ProfesionUseCaseImpl implements ProfesionUseCase {
     public Profesion consultar(Integer id, Integer bandera) {
         switch (bandera) {
             case 0:
-                //return profesionPortOutMongo.consultar(id);
+                return profesionPortOutMongo.consultar(id);
             case 1:
                 return profesionPortOutMaria.consultar(id);
             default:
@@ -36,11 +36,10 @@ public class ProfesionUseCaseImpl implements ProfesionUseCase {
     public boolean agregar(Profesion profesion, Integer bandera) {
         switch (bandera) {
             case 0:
-                //return profesionPortOutMongo.agregar(profesion);
+                return profesionPortOutMongo.agregar(profesion);
             case 1:
                 return profesionPortOutMaria.agregar(profesion);
             default:
-            /*
                 Boolean mongo = profesionPortOutMongo.agregar(profesion);
                 Boolean maria = profesionPortOutMaria.agregar(profesion);
                 if(mongo && maria) {
@@ -48,7 +47,6 @@ public class ProfesionUseCaseImpl implements ProfesionUseCase {
                 } else {
 
                 }
-                */
                 break;
         }
         return false;
@@ -58,11 +56,10 @@ public class ProfesionUseCaseImpl implements ProfesionUseCase {
     public boolean editar(Integer id, Profesion profesion, Integer bandera) {
         switch (bandera) {
             case 0:
-                //return profesionPortOutMongo.editar(id, profesion);
+                return profesionPortOutMongo.editar(id, profesion);
             case 1:
                 return profesionPortOutMaria.editar(id, profesion);
             default:
-            /*
                 Boolean mongo = profesionPortOutMongo.editar(id, profesion);
                 Boolean maria = profesionPortOutMaria.editar(id, profesion);
                 if(mongo && maria) {
@@ -70,7 +67,6 @@ public class ProfesionUseCaseImpl implements ProfesionUseCase {
                 } else {
 
                 }
-                */
                 break;
         }
         return false;
@@ -80,11 +76,10 @@ public class ProfesionUseCaseImpl implements ProfesionUseCase {
     public boolean eliminar(Integer id, Integer bandera) {
         switch (bandera) {
             case 0:
-                //return profesionPortOutMongo.eliminar(id);
+                return profesionPortOutMongo.eliminar(id);
             case 1:
                 return profesionPortOutMaria.eliminar(id);
             default:
-            /*
                 Boolean mongo = profesionPortOutMongo.eliminar(id);
                 Boolean maria = profesionPortOutMaria.eliminar(id);
                 if(mongo && maria) {
@@ -92,7 +87,6 @@ public class ProfesionUseCaseImpl implements ProfesionUseCase {
                 } else {
 
                 }
-                */
                 break;
         }
         return false;
@@ -102,11 +96,10 @@ public class ProfesionUseCaseImpl implements ProfesionUseCase {
     public Integer count(Integer bandera) {
         switch (bandera) {
             case 0:
-                //return profesionPortOutMongo.count();
+                return profesionPortOutMongo.count();
             case 1:
                 return profesionPortOutMaria.count();
             default:
-            /*
                 Integer mongo = profesionPortOutMongo.count();
                 Integer maria = profesionPortOutMaria.count();
                 if(mongo == maria) {
@@ -114,7 +107,6 @@ public class ProfesionUseCaseImpl implements ProfesionUseCase {
                 } else {
                     
                 }
-                */
                 break;
         }
         return 0;
@@ -124,7 +116,7 @@ public class ProfesionUseCaseImpl implements ProfesionUseCase {
     public List<Profesion> findAll(Integer bandera) {
         switch (bandera) {
             case 0:
-                //return profesionPortOutMongo.findAll();
+                return profesionPortOutMongo.findAll();
             case 1:
                 return profesionPortOutMaria.findAll();
             default:
